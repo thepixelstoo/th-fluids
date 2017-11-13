@@ -37,8 +37,8 @@
 
   function init() {
     for (var i = 0; i < 20; i++) {
-      p1 += 22.771
-      p2 += 10.001
+      p1 += 0.071
+      p2 += 0.0301
 
       pos += 1
       v1 += Math.sin(v1) * Math.random()
@@ -93,7 +93,7 @@
     ctx.strokeStyle = currColor;
     status.textContent = group[idx].p
 
-    ctx.arc(Math.sin(group[idx].p1) * group[idx].p1 + pos, group[idx].p2 * 12.405, circleSize, 0, 2 * Math.PI);
+    ctx.arc(Math.sin(group[idx].p1) * group[idx].p1, group[idx].p2 * 12.405, circleSize, 0, 2 * Math.PI);
     ctx.lineWidth = 5
 
     ctx.stroke();
