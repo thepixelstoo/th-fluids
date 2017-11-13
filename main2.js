@@ -12,7 +12,7 @@
   var v1 = 0.101; // speed
   var h1; // height
   var h2; // height
-  var g = 1.8 // m/sec
+  var g = 9.8 // m/sec
   var opacity = 5.98
   var bounce = false
   var group = []
@@ -25,10 +25,6 @@
   function zoom() {
     //reset()
     circleSize += 5
-
-    if (circleSize > 50) {
-      circleSize = canvas.height / 3
-    }
   }
 
   window.onclick = function (ev) {
@@ -37,7 +33,7 @@
 
   function init() {
     for (var i = 0; i < 20; i++) {
-      p1 += 22.771
+      p1 += 32.771
       p2 += 10.001
 
       pos += 1
@@ -76,7 +72,7 @@
       opacity = 0.001
     }
 
-    if (group[idx].p <= 0.0 || (group[idx].p + 250) > canvas.width) {
+    if (group[idx].p <= 0.0 || (group[idx].p + 150) > canvas.width) {
       bounce = !bounce
 
       group[idx].p = Math.sin(45) * group[idx].p
@@ -93,14 +89,14 @@
     ctx.strokeStyle = currColor;
     status.textContent = Math.floor(group[idx].p * 3)
 
-    ctx.arc(group[idx].p1, Math.cos(group[idx].p2) * 0.405 + canvas.height / 2, circleSize, 0, 2 * Math.PI);
+    ctx.arc(group[idx].p1, (Math.cos(group[idx].p2) * 12.905), circleSize, 0, 2 * Math.PI);
     ctx.lineWidth = 2
 
     ctx.stroke();
     ctx.closePath();
   }
 
-  h1 = 0.4012 // m
+  h1 = 0.8012 // m
   h2 = 0.0155 // m
 
   function reset() {
