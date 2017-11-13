@@ -32,7 +32,7 @@
   }
 
   function init() {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 20; i++) {
       p1 += 12.771
       p2 += 10.001
 
