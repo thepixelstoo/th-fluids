@@ -78,9 +78,9 @@
       group[idx].p = Math.sin(45) * group[idx].p
 
       if (bounce) {
-        currColor = 'rgba(230, 20, 60, 0.008)'
+        currColor = 'rgba(210, 20, 10, 0.008)'
       } else {
-        currColor = 'rgba(20, 200, 210, 0.011)'
+        currColor = 'rgba(30, 110, 210, 0.051)'
       }
     }
 
@@ -89,14 +89,14 @@
     ctx.strokeStyle = currColor;
     status.textContent = Math.floor(group[idx].p * 3)
 
-    ctx.arc(group[idx].p1, (Math.cos(group[idx].p2) * 12.905), circleSize, 0, 2 * Math.PI);
+    ctx.arc(group[idx].p1, (Math.cos(group[idx].p2) * 212.905), circleSize, 0, 2 * Math.PI);
     ctx.lineWidth = 2
 
     ctx.stroke();
     ctx.closePath();
   }
 
-  h1 = 0.8012 // m
+  h1 = 0.4012 // m
   h2 = 0.0155 // m
 
   function reset() {

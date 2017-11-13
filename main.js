@@ -12,7 +12,7 @@
   var v1 = 0.101; // speed
   var h1; // height
   var h2; // height
-  var g = 1.8 // m/sec
+  var g = 111.8 // m/sec
   var opacity = 5.98
   var bounce = false
   var group = []
@@ -61,7 +61,7 @@
     if (bounce) {
       group[idx].p1 -= 0.5011
       group[idx].p2 += 0.6008
-      group[idx].p  -= 0.901
+      group[idx].p  -= 0.101
       opacity += 0.101
     } else {
       group[idx].p1 += 0.5011
@@ -79,7 +79,7 @@
     if (group[idx].p <= 0.0 || (group[idx].p + 250) > canvas.width) {
       bounce = !bounce
 
-      group[idx].p = Math.sin(45) * group[idx].p
+      group[idx].p = Math.sin(45) * group[idx].p1
 
       if (bounce) {
         currColor = 'rgba(230, 20, 60, 0.008)'
@@ -91,17 +91,17 @@
     ctx.beginPath();
 
     ctx.strokeStyle = currColor;
-    status.textContent = Math.floor(group[idx].p * 3)
+    status.textContent = group[idx].p
 
-    ctx.arc(group[idx].p1, Math.cos(group[idx].p2) * 0.405 + canvas.height / 2, circleSize, 0, 2 * Math.PI);
-    ctx.lineWidth = 2
+    ctx.arc(Math.sin(group[idx].p1) * group[idx].p1 + pos, group[idx].p2 * 12.405, circleSize, 0, 2 * Math.PI);
+    ctx.lineWidth = 5
 
     ctx.stroke();
     ctx.closePath();
   }
 
-  h1 = 0.4012 // m
-  h2 = 0.0155 // m
+  h1 = 0.1012 // m
+  h2 = 0.8155 // m
 
   function reset() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
