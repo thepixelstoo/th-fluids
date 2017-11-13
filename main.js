@@ -12,7 +12,7 @@
   var v1 = 0.101; // speed
   var h1; // height
   var h2; // height
-  var g = 111.8 // m/sec
+  var g = 1.8 // m/sec
   var opacity = 5.98
   var bounce = false
   var group = []
@@ -79,7 +79,7 @@
     if (group[idx].p <= 0.0 || (group[idx].p + 250) > canvas.width) {
       bounce = !bounce
 
-      group[idx].p = Math.sin(45) * group[idx].p1
+      group[idx].p = Math.sin(45) * group[idx].p
 
       if (bounce) {
         currColor = 'rgba(230, 20, 60, 0.008)'
