@@ -19,16 +19,12 @@
   var p = 0.0
   var pos = 1.001
   var count = 0
-  var circleSize = canvas.height / 3
+  var circleSize = canvas.height / 2
   var currColor = 'rgba(20, 200, 210, 0.005)'
 
   function zoom() {
     //reset()
     circleSize += 5
-
-    if (circleSize > 50) {
-      circleSize = canvas.height / 3
-    }
   }
 
   window.onclick = function (ev) {
@@ -37,8 +33,8 @@
 
   function init() {
     for (var i = 0; i < 20; i++) {
-      p1 += 0.071
-      p2 += 0.0301
+      p1 += 12.771
+      p2 += 10.001
 
       pos += 1
       v1 += Math.sin(v1) * Math.random()
@@ -61,7 +57,7 @@
     if (bounce) {
       group[idx].p1 -= 0.5011
       group[idx].p2 += 0.6008
-      group[idx].p  -= 0.101
+      group[idx].p  -= 0.901
       opacity += 0.101
     } else {
       group[idx].p1 += 0.5011
@@ -91,17 +87,17 @@
     ctx.beginPath();
 
     ctx.strokeStyle = currColor;
-    status.textContent = group[idx].p
+    status.textContent = Math.floor(group[idx].p * 3)
 
-    ctx.arc(Math.sin(group[idx].p1) * group[idx].p1, group[idx].p2 * 12.405, circleSize, 0, 2 * Math.PI);
-    ctx.lineWidth = 5
+    ctx.arc(group[idx].p1, Math.cos(group[idx].p2) * 0.405 + canvas.height / 2, circleSize, 0, 2 * Math.PI);
+    ctx.lineWidth = 2
 
     ctx.stroke();
     ctx.closePath();
   }
 
-  h1 = 0.1012 // m
-  h2 = 0.8155 // m
+  h1 = 0.4012 // m
+  h2 = 0.0155 // m
 
   function reset() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
