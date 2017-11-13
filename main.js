@@ -74,9 +74,8 @@
 
     if (group[idx].p <= 0.0 || (group[idx].p + 250) > canvas.width) {
       bounce = !bounce
-      //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      group[idx].p = Math.sin(145) * group[idx].p
+      group[idx].p = Math.sin(45) * group[idx].p
 
       if (bounce) {
         currColor = 'rgba(230, 20, 60, 0.008)'
