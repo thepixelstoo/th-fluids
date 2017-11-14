@@ -27,7 +27,8 @@
   function zoom() {
     for (var i = 0; i < group.length; i++) {
       group[i].circle.scale.x += 0.1
-      renderer.render(scene, camera)
+      group[i].material.opacity -= 0.01
+
     }
   }
 
@@ -89,8 +90,6 @@
     group[idx].p2 = group[idx].p1 + (0.5 * group[idx].p * Math.pow(group[idx].v1, 2)) + (group[idx].p * g * h1) - (0.5 * group[idx].p * Math.pow(group[idx].v2, 2)) - (group[idx].p * g * h2)
 
     if (bounce) {
-      renderer.autoClearColor = false
-
       group[idx].material.opacity -= 0.01
       group[idx].p1 -= 0.2011
       group[idx].p2 -= 0.3008
