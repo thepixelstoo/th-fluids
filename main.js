@@ -1,6 +1,5 @@
 (function () {
   var canvas = document.querySelector('canvas')
-  // var gravInput = document.querySelector('#gravity')
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
   var ctx = canvas.getContext('2d')
