@@ -16,15 +16,19 @@
   var p1 = 0.0001; // pressure
   var v2 = 0.1010; // speed
   var v1 = 0.101; // speed
-  var h1 = 0.400// height
+  var h1 = 12.400// height
   var h2 = 0.101; // height
-  var g = 11.8 // m/sec
+  var g = 9.8 // m/sec
   var group = []
   var p = 0.0
   var pos = 1.001
+  var idx = 0
 
   function zoom() {
-    //circle.scale.x += 0.01
+    for (var i = 0; i < group.length; i++) {
+      group[i].circle.scale.x += 0.1
+      renderer.render(scene, camera)
+    }
   }
 
   window.onclick = function (ev) {
@@ -38,14 +42,16 @@
     renderer.setClearColor(0x000000, 1)
     container.appendChild(renderer.domElement)
 
-    scene.background = new THREE.Color('#222')
     scene.add(camera)
     scene.add(light)
 
-    for (var i = 0; i < 20; i++) {
-      var material = new THREE.MeshBasicMaterial({ color: '#00e1d9' })
-      var geometry = new THREE.SphereGeometry( 5, 32, 32 )
-      //geometry.vertices.shift()
+    for (var i = 0; i < 10; i++) {
+      var material = new THREE.MeshLambertMaterial({
+        color: '#00e1d9'
+      })
+      var geometry = new THREE.SphereGeometry(40, 120, 40)
+
+      // geometry.vertices.shift()
       var circle = new THREE.Mesh(geometry, material)
 
       material.transparent = true
@@ -54,9 +60,13 @@
       p1 += 0.771
       p2 += 0.001
 
-      pos += 1
+      pos += 0.101
       v1 += Math.sin(v1) * Math.random()
       v2 += Math.sin(v2) * Math.random()
+
+      circle.position.x += p1
+      circle.position.z += p2
+      circle.position.y += p
 
       group.push({
         p1: p1,
@@ -74,53 +84,57 @@
   }
 
   var count = 0
-  var switched = false
 
   function bernP2 (idx) {
     group[idx].p2 = group[idx].p1 + (0.5 * group[idx].p * Math.pow(group[idx].v1, 2)) + (group[idx].p * g * h1) - (0.5 * group[idx].p * Math.pow(group[idx].v2, 2)) - (group[idx].p * g * h2)
 
-    console.log('---------> ', (0.5 * 1 * 1) - (group[idx].p * g * h2))
-    count++
-    if (count % 100 === 0) {
-      bounce = !bounce
-    }
-
     if (bounce) {
-      console.log('bounced')
-      //renderer.clear()
-      group[idx].p1 -= 0.2011
-      group[idx].p2 += 0.3008
-      group[idx].p  -= 1.901
+      renderer.autoClearColor = false
+
       group[idx].material.opacity -= 0.01
-      group[idx].material.color.setHex('#e1006f')
-      group[idx].circle.rotation.z -= 1
-      group[idx].circle.position.x += group[idx].p2
-    } else {
-      group[idx].p1 += 0.2011
+      group[idx].p1 -= 0.2011
       group[idx].p2 -= 0.3008
-      group[idx].p += 1.901
-      group[idx].material.opacity += 0.1
-      group[idx].material.color.setHex('#00e1d9')
-      group[idx].circle.rotation.z += 1
-      group[idx].circle.position.y -= group[idx].p1
-      group[idx].circle.rotation.x -= group[idx].p2
+      group[idx].p  -= 0.901
+      group[idx].circle.rotation.z += Math.cos(group[idx].p2) * group[idx].p2
+      group[idx].circle.rotation.y += Math.cos(group[idx].p2) * group[idx].pos
+      group[idx].circle.position.y += Math.cos(group[idx].p2) * group[idx].p1
+      group[idx].circle.position.z += Math.cos(group[idx].p2) * group[idx].p
+      group[idx].material.color.set('#e1006f')
+
+    } else {
+      group[idx].material.opacity += 0.01
+      group[idx].p1 += 0.2011
+      group[idx].p2 += 0.3008
+      group[idx].p += 0.901
+      group[idx].circle.rotation.z += Math.sin(group[idx].p2) * group[idx].p2
+      group[idx].circle.rotation.y += Math.sin(group[idx].p2) * group[idx].pos
+      group[idx].circle.position.y += Math.sin(group[idx].p2) * group[idx].p1
+      group[idx].circle.position.z += Math.sin(group[idx].p2) * group[idx].p
+      group[idx].material.color.set('#00f1d9')
     }
 
     if (group[idx].p <= 0.0 || group[idx].p > window.innerWidth) {
-      group[idx].p = Math.sin(45) * group[idx].p
+      group[idx].p = Math.sin(145) * group[idx].p
     }
   }
 
   function render() {
-    renderer.render(scene, camera)
-
-    for (var i = 0; i < 2; i++) {
-      bernP2(i)
+    count++
+    if (count % 500 === 0) {
+      bounce = !bounce
     }
 
-    setTimeout(function () {
-      window.requestAnimationFrame(render)
-    }, 10)
+    bernP2(idx)
+
+    idx++
+
+    if (idx >= group.length) {
+      idx = 0
+    }
+
+    renderer.render(scene, camera)
+
+    window.requestAnimationFrame(render)
   }
 
   init()
