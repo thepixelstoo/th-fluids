@@ -7,6 +7,7 @@
   var scene = new THREE.Scene()
   var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 10, 100)
   camera.position.z = 50
+  camera.layers.enable(1)
 
   var light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1)
 
@@ -49,6 +50,7 @@
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setClearColor( 0xffffff, 0)
+    renderer.vr.enabled = true
     container.appendChild(renderer.domElement)
 
     scene.add(camera)
@@ -63,6 +65,17 @@
       wireframe: true
     })
     var geometry = new THREE.SphereGeometry(10, 20, 32)
+
+    geometry.scale( - 1, 1, 1 );
+
+    var uvs = geometry.faceVertexUvs[0];
+
+    for(var i = 0; i < uvs.length; i ++) {
+      for(var j = 0; j < 3; j ++) {
+        uvs[i][j].x *= 0.5;
+      }
+    }
+
 
     var circle = new THREE.Mesh(geometry, material)
 
