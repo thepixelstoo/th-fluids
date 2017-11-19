@@ -23,6 +23,7 @@
 
   var orbit = new THREE.OrbitControls(camera, renderer.domElement)
   orbit.enableZoom = false
+    orbit.autoRotate = true
   var bounce = false
 
   var p2 = 0.9405; // pressure
