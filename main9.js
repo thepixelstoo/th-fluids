@@ -75,7 +75,7 @@
 
         if (realComponentOfResult * imaginaryComponentOfResult > 5) {
           var currPercentage = (i / maxIterations * 100) || 0
-          console.log('>>>>> ', currPercentage * 2, x, y)
+
           if (currPercentage == 0) {
             ctx.fillStyle = '#111'
           } else {
