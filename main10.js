@@ -52,8 +52,8 @@
   var magnificationFactor = 100
   var panX = 2.0
   var panY = 1.5
-  var width = 200
-  var height = 300
+  var width = 100
+  var height = 200
   var depth = 150
   var counter = 0
 
