@@ -5,7 +5,7 @@
     antialias: true,
     preserveDrawingBuffer: false
   })
-  var opacity = 0.3
+  var opacity = 0.5
   var scene = new THREE.Scene()
   var camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000)
   camera.position.x = 400
