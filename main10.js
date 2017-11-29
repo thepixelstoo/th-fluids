@@ -5,7 +5,7 @@
     antialias: true,
     preserveDrawingBuffer: false
   })
-  var opacity = 0.7
+  var opacity = 0.3
   var scene = new THREE.Scene()
   var camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000)
   camera.position.x = 400
@@ -22,12 +22,11 @@
 
   var bounce = false
 
-  var material = new THREE.MeshPhongMaterial({
-    color: '#00e1d9',
-    shininess: 0.9
+  var material = new THREE.MeshBasicMaterial({
+    color: 'rgb(30, 150, 220)'
   })
 
-  var geometry = new THREE.BoxGeometry(12, 12, 12)
+  var geometry = new THREE.BoxGeometry(14, 14, 14)
   //var circle = new THREE.Mesh(geometry, material)
 
   material.transparent = true
@@ -49,13 +48,13 @@
   var x = 0
   var y = 0
   var z = 0
-  var maxIterations = 50
-  var magnificationFactor = 600
+  var maxIterations = 150
+  var magnificationFactor = 100
   var panX = 2.0
   var panY = 1.5
   var width = 200
-  var height = 400
-  var depth = 50
+  var height = 300
+  var depth = 150
   var counter = 0
 
   function calc() {
