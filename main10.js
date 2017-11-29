@@ -5,12 +5,12 @@
     antialias: true,
     preserveDrawingBuffer: false
   })
-  var opacity = 0.5
+  var opacity = 0.3
   var scene = new THREE.Scene()
   var camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000)
-  camera.position.x = 400
-  camera.position.z = 100
-  camera.position.y = 100
+  camera.position.x = 300
+  camera.position.z = 10
+  camera.position.y = 10
   //camera.position.x = 100
   camera.layers.enable(1)
 
@@ -22,11 +22,11 @@
 
   var bounce = false
 
-  var material = new THREE.MeshBasicMaterial({
+  var material = new THREE.MeshPhongMaterial({
     color: 'rgb(30, 150, 220)'
   })
 
-  var geometry = new THREE.BoxGeometry(14, 14, 14)
+  var geometry = new THREE.BoxGeometry(20, 20, 50)
   //var circle = new THREE.Mesh(geometry, material)
 
   material.transparent = true
@@ -48,13 +48,13 @@
   var x = 0
   var y = 0
   var z = 0
-  var maxIterations = 150
+  var maxIterations = 200
   var magnificationFactor = 100
   var panX = 2.0
   var panY = 1.5
   var width = 100
   var height = 200
-  var depth = 150
+  var depth = 200
   var counter = 0
 
   function calc() {
@@ -78,9 +78,9 @@
         } else {
           if (counter % 2 === 0) {
             //sphere.material.color.set('rgb(' + (currPercentage) + ', ' + (currPercentage * 10) + ', ' + (currPercentage * 15) + ')')
-            sphere.position.setX(x * 10)
-            sphere.position.setY(y * 10)
-            sphere.position.setZ(z * 20)
+            sphere.position.setX(x * 20)
+            sphere.position.setY(y * 20)
+            sphere.position.setZ(z * 50)
 
             scene.add(sphere)
             sphere = null
